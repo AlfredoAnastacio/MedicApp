@@ -129,7 +129,6 @@
                 </table>
             </div>
         </div>
-    
         <div class="col-xl-4">
             <div class="card shadow">
                 <div class="card-header border-0">
