@@ -19,15 +19,17 @@
                 </ul>
             </div>
         @endif
-            <form action="{{ route('specialty.store')}}" method="post">
+            <form action="{{ route('specialty.update', $specialty->id) }}" method="post">
             @csrf
+            @method('PUT')
+            <input type="hidden" id="id_specialty" name="id_specialty" value="{{ $specialty->id }}">
                 <div class="form-group">
                     <label for="name">Nombre de la especialidad:</label>
-                    <input type="text" name="name" class="form-control" placeholder="Ingresa el nombre de la especialidad" required value=" {{old('name')}} ">
+                    <input type="text" name="name" class="form-control" placeholder="Ingresa el nombre de la especialidad" required value="{{ old('name', $specialty->name) }}">
                 </div>
                 <div class="form-group">
                     <label for="name">Descripción: </label>
-                    <input type="text" name="description" class="form-control" placeholder="Ingresa la descripción de la especialidad" value=" {{old('description')}} ">
+                    <input type="text" name="description" class="form-control" placeholder="Ingresa la descripción de la especialidad" value="{{ old('description', $specialty->description) }}">
                 </div>
                 <div class="text-center">
                     <a href="{{ route('specialty.index')}}" class="btn btn-secondary">Cancelar</a>

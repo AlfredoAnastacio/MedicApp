@@ -21,6 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/specialties', 'SpecialtyController@index')->name('specialty.index');
 Route::get('/specialties/create', 'SpecialtyController@create')->name('speciality.create');
-Route::post('/specialties', 'SpecialtyController@store')->name('specialties.store');
-// Route::get('/specialties/{specialty}/edit', 'SpecialtyController@edit');
+Route::post('/specialties', 'SpecialtyController@store')->name('specialty.store');
+
+Route::get('/specialties/{specialty}/edit', 'SpecialtyController@edit')->name('specialty.edit');
+Route::put('/specialties/{idspecialty}', 'SpecialtyController@update')->name('specialty.update');
+Route::get('/specialties/{idspecialty}', 'SpecialtyController@destroy')->name('specialty.destroy');
 
