@@ -23,14 +23,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Oftalmología</td>
-                        <td> - </td>
-                        <td>
-                            <a class="btn btn-sm btn-primary">Editar</a>
-                            <a class="btn btn-sm btn-danger">Eliminar</a>                        
-                        </td>
-                    </tr>
+                    @foreach ($specialties as $specialty)
+                        <tr>
+                            <td>{{$specialty->name}}</td>
+                            <td>{{$specialty->description}}</td>
+                            <td>
+                                <a class="btn btn-sm btn-primary">Editar</a>
+                                <a class="btn btn-sm btn-danger">Eliminar</a>                        
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

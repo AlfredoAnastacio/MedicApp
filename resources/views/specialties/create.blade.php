@@ -10,14 +10,21 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="form-group">
-                <label for="name">Nombre de la especialidad:</label>
-                <input type="text" name="name" class="form-control" placeholder="Ingresa el nombre de la especialidad">
-            </div>
-            <div class="form-group">
-                <label for="name">Descripción: </label>
-                <input type="text" name="name" class="form-control" placeholder="Ingresa la descripción de la especialidad">
-            </div>
+            <form action="{{ route('specialties.store')}}" method="post">
+            @csrf
+                <div class="form-group">
+                    <label for="name">Nombre de la especialidad:</label>
+                    <input type="text" name="name" class="form-control" placeholder="Ingresa el nombre de la especialidad">
+                </div>
+                <div class="form-group">
+                    <label for="name">Descripción: </label>
+                    <input type="text" name="description" class="form-control" placeholder="Ingresa la descripción de la especialidad">
+                </div>
+                <div class="text-center">
+                    <a href="{{ route('specialty.index')}}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
