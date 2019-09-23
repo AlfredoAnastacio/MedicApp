@@ -28,8 +28,13 @@
                             <td>{{$specialty->name}}</td>
                             <td>{{$specialty->description}}</td>
                             <td>
+                                <form action="{{ route('specialty.destroy', $specialty->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
                                 <a href="{{ route('specialty.edit', $specialty->id)}}" class="btn btn-sm btn-primary">Editar</a>
-                                <a class="btn btn-sm btn-danger">Eliminar</a>                        
+                                <input type="hidden" id="id_specialty" name="id_specialty" value="{{ $specialty->id }}">
+                                <button class="btn btn-sm btn-danger" type="submit">Eliminar</a>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

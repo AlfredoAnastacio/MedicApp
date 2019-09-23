@@ -43,12 +43,11 @@ class SpecialtyController extends Controller
     }
 
     public function edit(Specialty $specialty){
-        
+
         return view('specialties.edit', compact('specialty'));
     }
 
     public function update(Request $request, Specialty $specialty){
-        // dd($request->all());
         $rules = [
             'name' => 'required|min:3'
         ];
@@ -65,5 +64,15 @@ class SpecialtyController extends Controller
         $specialty->save();
 
         return redirect('/specialties');
+    }
+
+    public function destroy(Request $request, Specialty $specialty){
+        $specialty = Specialty::find($request->id_specialty);
+        // dd($request->all());
+        $specialty->delete();
+        // dd($specialty->delete());
+
+        return redirect('/specialties');
+
     }
 }

@@ -25,5 +25,5 @@ Route::post('/specialties', 'SpecialtyController@store')->name('specialty.store'
 
 Route::get('/specialties/{specialty}/edit', 'SpecialtyController@edit')->name('specialty.edit');
 Route::put('/specialties/{idspecialty}', 'SpecialtyController@update')->name('specialty.update');
-Route::get('/specialties/{idspecialty}', 'SpecialtyController@destroy')->name('specialty.destroy');
+Route::delete('/specialties/{idspecialty}', 'SpecialtyController@destroy')->name('specialty.destroy');
 
