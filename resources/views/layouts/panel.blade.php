@@ -16,6 +16,8 @@
   <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
   <!-- Argon CSS -->
   <link href="{{ asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
+  <link href="{{ asset('plugins/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
+  @yield('css')
 </head>
 
 <body>
@@ -128,8 +130,10 @@
   <!-- Optional JS -->
   <script src="{{ asset('vendor/chart.js/dist/Chart.min.js') }}"></script>
   <script src="{{ asset('vendor/chart.js/dist/Chart.extension.js') }}"></script>
+  <script src="{{ asset('plugins/sweetalert2/dist/sweetalert2.min.js') }}"></script>
   <!-- Argon JS -->
   <script src="{{ asset('js/argon.js?v=1.0.0') }}"></script>
+  @stack('scripts')
 </body>
 
 </html>

@@ -19,7 +19,7 @@
                 </ul>
             </div>
         @endif
-            <form action="{{ route('specialty.store')}}" method="post">
+            <form action=" {{route('specialty.store') }}" method="post">
             @csrf
                 <div class="form-group">
                     <label for="name">Nombre de la especialidad:</label>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Specialty;
+use Session;
 
 class SpecialtyController extends Controller
 {
@@ -14,7 +15,7 @@ class SpecialtyController extends Controller
     public function index(){
 
         $specialties = Specialty::all();
-        // dd($specialties);
+
         return view('specialties.index', compact('specialties'));
     }
 
@@ -22,7 +23,7 @@ class SpecialtyController extends Controller
         return view('specialties.create');
     }
 
-    public function store(Request $request){
+    private function performValidation(Request $request){
         $rules = [
             'name' => 'required|min:3'
         ];
@@ -33,13 +34,20 @@ class SpecialtyController extends Controller
         ];
 
         $this->validate($request, $rules, $msg);
+    }
+
+    public function store(Request $request){
+
+        $this->performValidation($request);
 
         $specialty = new Specialty();
         $specialty->name = $request->name;
         $specialty->description = $request->description;
         $specialty->save();
 
-        return redirect('/specialties');
+        $notification = 'Especialidad registrada correctamente';
+
+        return redirect('/specialties')->with(compact('notification'));
     }
 
     public function edit(Specialty $specialty){
@@ -48,31 +56,34 @@ class SpecialtyController extends Controller
     }
 
     public function update(Request $request, Specialty $specialty){
-        $rules = [
-            'name' => 'required|min:3'
-        ];
+        
+        $this->performValidation($request);
 
-        $msg = [
-            'name.required' => 'El campo nombre es requerido',
-            'name.min'      => 'El nombre debe contener al menos 3 letras'
-        ];
-
-        $this->validate($request, $rules, $msg);
         $specialty = Specialty::find($request->id_specialty);
         $specialty->name = $request->name;
         $specialty->description = $request->description;
         $specialty->save();
 
-        return redirect('/specialties');
+        $notification = 'Especialidad actualizada correctamente';
+
+        return redirect('/specialties')->with(compact('notification'));
     }
 
-    public function destroy(Request $request, Specialty $specialty){
-        $specialty = Specialty::find($request->id_specialty);
-        // dd($request->all());
-        $specialty->delete();
-        // dd($specialty->delete());
+    public function destroy(Request $request){
+        
+        $response=[];
+        $specialty = Specialty::find($request->idEspecialidad);
+        $result = $specialty->delete();
 
-        return redirect('/specialties');
+        if ($result) {
+            $response['status'] = 'success';
+            $response['msg'] = 'Especialidad borrada correctamente';
+        } else {
+            $response['status'] = 'error';
+            $response['msg'] = 'Ocurrió un error!';
+        }
+
+        return response()->json($response);
 
     }
 }
