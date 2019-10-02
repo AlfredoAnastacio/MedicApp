@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// SPECIALTIES
 Route::get('/specialties', 'SpecialtyController@index')->name('specialty.index');
 Route::get('/specialties/create', 'SpecialtyController@create')->name('speciality.create');
 Route::get('/specialties/{specialty}/edit', 'SpecialtyController@edit')->name('specialty.edit');
@@ -26,4 +27,6 @@ Route::post('specialties-eliminar', 'SpecialtyController@destroy')->name('specia
 Route::post('/specialties', 'SpecialtyController@store')->name('specialty.store');
 Route::put('/specialties/{idspecialty}', 'SpecialtyController@update')->name('specialty.update');
 
+//DOCTORS
 
+Route::resource('doctors', 'DoctorController');
