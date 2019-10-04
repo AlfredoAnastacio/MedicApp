@@ -8,7 +8,7 @@
                     <h3 class="mb-0">Doctores</h3>
                 </div>
                 <div class="col text-right">
-                    <a href=" {{url('doctors')}} " class="btn btn-sm btn-success">Agregar</a>
+                    <a href=" {{route('doctors.create')}} " class="btn btn-sm btn-success">Agregar</a>
                 </div>
             </div>
             <div class="card-body">

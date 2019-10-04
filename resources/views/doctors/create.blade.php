@@ -19,7 +19,7 @@
                 </ul>
             </div>
         @endif
-            <form action=" {{route('doctors') }}" method="post">
+            <form action=" {{route('doctors.store') }}" method="post">
             @csrf
                 <div class="form-group">
                     <label for="name">Nombre del Médico:</label>
@@ -42,7 +42,7 @@
                     <input type="number" name="phone" class="form-control" placeholder="Ingresa la descripción de la especialidad" value=" {{old('phone')}} ">
                 </div>
                 <div class="text-center">
-                    <a href="{{ route('doctors')}}" class="btn btn-secondary">Cancelar</a>
+                    <a href="{{ route('doctors.index')}}" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>

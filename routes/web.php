@@ -28,5 +28,7 @@ Route::post('/specialties', 'SpecialtyController@store')->name('specialty.store'
 Route::put('/specialties/{idspecialty}', 'SpecialtyController@update')->name('specialty.update');
 
 //DOCTORS
-
-Route::resource('doctors', 'DoctorController');
+Route::get('/doctors', 'DoctorController@index')->name('doctors.index');
+Route::get('/doctors/create', 'DoctorController@create')->name('doctors.create');
+Route::post('/doctors', 'DoctorController@store')->name('doctors.store');
+// Route::resource('doctors', 'DoctorController');
