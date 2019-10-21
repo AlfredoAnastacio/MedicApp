@@ -40,8 +40,8 @@
                                 <td>{{$patient->dni}}</td>
                                 <td>
                                     <meta name="csrf-token" content="{{ csrf_token() }}">
-                                    <a href="{{ route('specialty.edit', $patient->id)}}" class="btn btn-sm btn-primary">Editar</a>
-                                    <input type="hidden" id="id_specialty" name="id_specialty" value="{{ $patient->id }}">
+                                    <a href="{{ route('patients.edit', $patient->id)}}" class="btn btn-sm btn-primary">Editar</a>
+                                    <input type="hidden" id="id_patient" name="id_patient" value="{{ $patient->id }}">
                                     <button class="btn btn-sm btn-danger" onclick="eliminar({{ $patient->id }})" id="eliminar">Eliminar</a>
                                 </td>
                             </tr>
@@ -49,6 +49,9 @@
                     @endif
                 </tbody>
             </table>
+        </div>
+        <div class="card-body">
+            {{ $patients->links() }}
         </div>
     </div>
 @endsection
@@ -66,14 +69,14 @@
                 confirmButtonText: 'Aceptar'
             }).then((result) => {
                 if (result.value) {
-                    var idEspecialidad = id;
+                    var idPacient = id;
                     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
                         type: "POST",
-                        url: "specialties-eliminar",
+                        url: "patients-eliminar",
                         data:  {
                             _token: CSRF_TOKEN,
-                            idEspecialidad: idEspecialidad,
+                            idPacient: idPacient,
                         },
                         dataType: 'JSON',
                         success: function (json) {

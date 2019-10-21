@@ -38,4 +38,7 @@ Route::put('/doctors/{idDoctor}', 'DoctorController@update')->name('doctors.upda
 //PATIENTS
 Route::get('/patients', 'PatientController@index')->name('patients.index');
 Route::get('/patients/create', 'PatientController@create')->name('patients.create');
+Route::get('/patients/{patient}/edit', 'PatientController@edit')->name('patients.edit');
+Route::post('patients-eliminar', 'PatientController@destroy')->name('patients.destroy');
 Route::post('/patients', 'PatientController@store')->name('patients.store');
+Route::put('/patients/{idPatient}', 'PatientController@update')->name('patients.update');
