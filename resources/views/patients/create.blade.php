@@ -5,7 +5,7 @@
         <div class="card-header border-0">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="mb-0">Nuevo doctor</h3>
+                    <h3 class="mb-0">Nuevo paciente</h3>
                 </div>
             </div>
         </div>
@@ -19,11 +19,11 @@
                 </ul>
             </div>
         @endif
-            <form action=" {{route('doctors.store') }}" method="post">
+            <form action=" {{route('patients.store') }}" method="post">
             @csrf
                 <div class="form-group">
-                    <label for="name">Nombre del Médico:</label>
-                    <input type="text" name="name" class="form-control" placeholder="Ingresa el nombre del médico" required value=" {{old('name')}} ">
+                    <label for="name">Nombre del paciente:</label>
+                    <input type="text" name="name" class="form-control" placeholder="Ingresa el nombre del paciente" required value=" {{old('name')}} ">
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail: </label>
@@ -35,18 +35,14 @@
                 </div>
                 <div class="form-group">
                     <label for="address">Dirección: </label>
-                    <input type="text" name="address" class="form-control" placeholder="Ingrese una dirección" value=" {{old('address')}} ">
+                    <input type="text" name="address" class="form-control" placeholder="Ingresa la descripción de la especialidad" value=" {{old('address')}} ">
                 </div>
                 <div class="form-group">
                     <label for="phone">Teléfono / móvil: </label>
-                    <input type="number" name="phone" class="form-control" placeholder="Ingresa un número de teléfono" value=" {{old('phone')}} ">
-                </div>
-                <div class="form-group">
-                    <label for="phone">Contraseña: </label>
-                    <input type="text" name="password" class="form-control" value=" {{ str_random(6) }} ">
+                    <input type="number" name="phone" class="form-control" placeholder="Ingresa la descripción de la especialidad" value=" {{old('phone')}} ">
                 </div>
                 <div class="text-center">
-                    <a href="{{ route('doctors.index')}}" class="btn btn-secondary">Cancelar</a>
+                    <a href="{{ route('patients.index')}}" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>

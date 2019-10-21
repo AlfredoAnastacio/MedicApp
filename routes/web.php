@@ -30,5 +30,12 @@ Route::put('/specialties/{idspecialty}', 'SpecialtyController@update')->name('sp
 //DOCTORS
 Route::get('/doctors', 'DoctorController@index')->name('doctors.index');
 Route::get('/doctors/create', 'DoctorController@create')->name('doctors.create');
+Route::get('/doctors/{doctor}/edit', 'DoctorController@edit')->name('doctors.edit');
+Route::post('doctors-eliminar', 'DoctorController@destroy')->name('doctors.destroy');
 Route::post('/doctors', 'DoctorController@store')->name('doctors.store');
-// Route::resource('doctors', 'DoctorController');
+Route::put('/doctors/{idDoctor}', 'DoctorController@update')->name('doctors.update');
+
+//PATIENTS
+Route::get('/patients', 'PatientController@index')->name('patients.index');
+Route::get('/patients/create', 'PatientController@create')->name('patients.create');
+Route::post('/patients', 'PatientController@store')->name('patients.store');

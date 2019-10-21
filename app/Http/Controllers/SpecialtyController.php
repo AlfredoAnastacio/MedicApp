@@ -84,6 +84,5 @@ class SpecialtyController extends Controller
         }
 
         return response()->json($response);
-
     }
 }

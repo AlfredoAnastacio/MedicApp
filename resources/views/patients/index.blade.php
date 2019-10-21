@@ -5,10 +5,10 @@
         <div class="card-header border-0">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="mb-0">Doctores</h3>
+                    <h3 class="mb-0">Pacientes</h3>
                 </div>
                 <div class="col text-right">
-                    <a href=" {{route('doctors.create')}} " class="btn btn-sm btn-success">Agregar</a>
+                    <a href=" {{route('patients.create')}} " class="btn btn-sm btn-success">Agregar</a>
                 </div>
             </div>
             <div class="card-body">
@@ -30,19 +30,19 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    @if (count($doctors) == 0)
+                    @if (count($patients) == 0)
                         <td colspan="3" class="text-center col-md-12"><strong> SIN REGISTROS </strong></td>
                     @else
-                        @foreach ($doctors as $doctor)
+                        @foreach ($patients as $patient)
                             <tr>
-                                <td>{{$doctor->name}}</td>
-                                <td>{{$doctor->email}}</td>
-                                <td>{{$doctor->dni}}</td>
+                                <td>{{$patient->name}}</td>
+                                <td>{{$patient->email}}</td>
+                                <td>{{$patient->dni}}</td>
                                 <td>
                                     <meta name="csrf-token" content="{{ csrf_token() }}">
-                                    <a href="{{ route('doctors.edit', $doctor->id)}}" class="btn btn-sm btn-primary">Editar</a>
-                                    <input type="hidden" id="id_doctor" name="id_doctor" value="{{ $doctor->id }}">
-                                    <button class="btn btn-sm btn-danger" onclick="eliminar({{ $doctor->id }})" id="eliminar">Eliminar</a>
+                                    <a href="{{ route('specialty.edit', $patient->id)}}" class="btn btn-sm btn-primary">Editar</a>
+                                    <input type="hidden" id="id_specialty" name="id_specialty" value="{{ $patient->id }}">
+                                    <button class="btn btn-sm btn-danger" onclick="eliminar({{ $patient->id }})" id="eliminar">Eliminar</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -66,14 +66,14 @@
                 confirmButtonText: 'Aceptar'
             }).then((result) => {
                 if (result.value) {
-                    var idDoctor = id;
+                    var idEspecialidad = id;
                     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
                         type: "POST",
-                        url: "doctors-eliminar",
+                        url: "specialties-eliminar",
                         data:  {
                             _token: CSRF_TOKEN,
-                            idDoctor: idDoctor,
+                            idEspecialidad: idEspecialidad,
                         },
                         dataType: 'JSON',
                         success: function (json) {
