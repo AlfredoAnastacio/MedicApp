@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Http\Controllers\Controller;
 
-class DoctorController extends Controller
+class PatientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,9 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = User::doctors()->get();
+        $patients = User::patients()->paginate(5);
 
-        return view('doctors.index', compact('doctors'));
+        return view('patients.index', compact('patients'));
     }
 
     /**
@@ -26,7 +27,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return view('doctors.create');
+        return view('patients.create');
     }
 
     private function performValidation(Request $request){
@@ -56,22 +57,21 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->performValidation($request);
 
-        $doctor = new User();
-        $doctor->name = $request->name;
-        $doctor->email = $request->email;
-        $doctor->password = bcrypt($request->password);
-        $doctor->dni = $request->dni;
-        $doctor->address = $request->address;
-        $doctor->phone = $request->phone;
-        $doctor->role = 'doctor';
-        $doctor->save();
+        $patient = new User();
+        $patient->name = $request->name;
+        $patient->email = $request->email;
+        $patient->password = bcrypt($request->password);
+        $patient->dni = $request->dni;
+        $patient->address = $request->address;
+        $patient->phone = $request->phone;
+        $patient->role = 'patient';
+        $patient->save();
 
-        $notification = 'Doctor registrado correctamente';
+        $notification = 'Paciente registrado correctamente';
 
-        return redirect('/doctors')->with(compact('notification'));
+        return redirect('/patients')->with(compact('notification'));
     }
 
     /**
@@ -93,9 +93,9 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        $doctor = User::doctors()->findOrFail($id);
+        $patient = User::patients()->findOrFail($id);
 
-        return view('doctors.edit')->with(compact('doctor'));
+        return view('patients.edit')->with(compact('patient'));
     }
 
     /**
@@ -107,25 +107,24 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         $this->performValidation($request);
 
-        $doctor = User::doctors()->findOrFail($id);
+        $patient = User::patients()->findOrFail($id);
         
-        $doctor->name = $request->name;
-        $doctor->email = $request->email;
+        $patient->name = $request->name;
+        $patient->email = $request->email;
         if ($request->password) {
-            $doctor->password = bcrypt($request->password);
+            $patient->password = bcrypt($request->password);
         }
-        $doctor->dni = $request->dni;
-        $doctor->address = $request->address;
-        $doctor->phone = $request->phone;
+        $patient->dni = $request->dni;
+        $patient->address = $request->address;
+        $patient->phone = $request->phone;
 
-        $doctor->save();
+        $patient->save();
 
-        $notification = 'Los datos del doctor se actualizaron correctamente';
+        $notification = 'Los datos del paciente se actualizaron correctamente';
 
-        return redirect('/doctors')->with(compact('notification'));
+        return redirect('/patients')->with(compact('notification'));
     }
 
     /**
@@ -137,12 +136,12 @@ class DoctorController extends Controller
     public function destroy(Request $request)
     {
         $response=[];
-        $doctor = User::doctors()->findOrFail($request->idDoctor);
-        $result = $doctor->delete();
+        $patient = User::patients()->findOrFail($request->idPacient);
+        $result = $patient->delete();
 
         if ($result) {
             $response['status'] = 'success';
-            $response['msg'] = 'Doctor eliminado correctamente';
+            $response['msg'] = 'Paciente eliminado correctamente';
         } else {
             $response['status'] = 'error';
             $response['msg'] = 'Ocurrió un error!';

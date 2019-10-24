@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware(['auth', 'admin'])->group(function(){
+Route::middleware(['auth', 'admin'])->namespace('Admin')->group(function(){
 
     // SPECIALTIES
     Route::get('/specialties', 'SpecialtyController@index')->name('specialty.index');

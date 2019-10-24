@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Specialty;
 use Session;
+use App\Http\Controllers\Controller;
 
 class SpecialtyController extends Controller
 {
     public function index(){
-
+ 
         $specialties = Specialty::all();
 
         return view('specialties.index', compact('specialties'));
