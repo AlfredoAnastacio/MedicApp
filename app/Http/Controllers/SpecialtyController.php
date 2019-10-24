@@ -8,10 +8,6 @@ use Session;
 
 class SpecialtyController extends Controller
 {
-    public function _construct(){
-        $this->middleware('auth');
-    }
-    
     public function index(){
 
         $specialties = Specialty::all();
