@@ -46,3 +46,9 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->group(function(){
     Route::put('/patients/{idPatient}', 'PatientController@update')->name('patients.update');
 
 });
+
+Route::middleware(['auth', 'doctor'])->namespace('Doctor')->group(function(){
+
+    Route::get('/schedule', 'ScheduleController@edit')->name('specialty.index');
+
+});
