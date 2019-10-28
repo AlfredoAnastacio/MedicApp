@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 class ScheduleController extends Controller
 {
     public function edit(){
-        return view('schedule');
+        $days = [
+            'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
+        ];
+        return view('schedule', compact('days'));
     }
 }

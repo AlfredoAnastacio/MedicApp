@@ -30,14 +30,57 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    @for ($i = 0; $i <7 ; $i++)
+                    @foreach ($days as $day)
                         <tr>
-                            <th>Día {{ $i }}</th>
-                            <td></td>
-                            <td> - </td>
-                            <td> - </td>
+                            <th>{{ $day }}</th>
+                            <td>
+                                <label class="custom-toggle">
+                                    <input type="checkbox">
+                                    <span class="custom-toggle-slider rounded-circle"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col">
+                                        <select name="" id="" class="form-control">
+                                            @for ($i = 5; $i <= 11 ; $i++)
+                                                <option value="">{{ $i}}:00 am</option>
+                                                <option value="">{{ $i}}:30 am</option>                                            
+                                            @endfor
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <select name="" id="" class="form-control">
+                                            @for ($i = 5; $i <= 11 ; $i++)
+                                                <option value="">{{ $i}}:00 am</option>
+                                                <option value="">{{ $i}}:30 am</option>                                            
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col">
+                                        <select name="" id="" class="form-control">
+                                            @for ($i = 4; $i <= 9 ; $i++)
+                                                <option value="">{{ $i}}:30 am</option>
+                                                <option value="">{{ $i}}:00 am</option>                                            
+                                            @endfor
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <select name="" id="" class="form-control">
+                                            @for ($i = 4; $i <= 9 ; $i++)
+                                                <option value="">{{ $i}}:30 am</option>
+                                                <option value="">{{ $i}}:00 am</option>                                            
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
-                    @endfor
+                    @endforeach
                 </tbody>
             </table>
         </div>
