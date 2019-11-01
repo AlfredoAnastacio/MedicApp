@@ -1,88 +1,91 @@
 @extends('layouts.panel')
 
 @section('content')
-    <div class="card shadow">
-        <div class="card-header border-0">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h3 class="mb-0">Gestionar horario</h3>
-                </div>
-                <div class="col text-right">
-                    <a href=" {{route('doctors.create')}} " class="btn btn-sm btn-success">Guardar cambios</a>
-                </div>
-            </div>
-            <div class="card-body">
-                @if(session('notification'))
-                    <div class="alert alert-success role="alert"">
-                    {{ session('notification') }}
+    <form action=" {{ route('schedule.store')}} " method="POST">
+    @csrf
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="mb-0">Gestionar horario</h3>
                     </div>
-                @endif
+                    <div class="col text-right">
+                        <Button type="submit" class="btn btn-sm btn-success">Guardar cambios</Button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @if(session('notification'))
+                        <div class="alert alert-success role="alert"">
+                        {{ session('notification') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light text-center">
+                        <tr>
+                            <th scope="col"><strong>Día</strong></th>
+                            <th scope="col"><strong>Activo</strong></th>
+                            <th scope="col"><strong>Turno mañana</strong></th>
+                            <th scope="col"><strong>Turno tarde</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        @foreach ($days as $day)
+                            <tr>
+                                <th>{{ $day }}</th>
+                                <td>
+                                    <label class="custom-toggle">
+                                        <input type="checkbox">
+                                        <span class="custom-toggle-slider rounded-circle"></span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">
+                                            <select name="" id="" class="form-control">
+                                                @for ($i = 5; $i <= 11 ; $i++)
+                                                    <option value="">{{ $i}}:00 am</option>
+                                                    <option value="">{{ $i}}:30 am</option>                                            
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <select name="" id="" class="form-control">
+                                                @for ($i = 5; $i <= 11 ; $i++)
+                                                    <option value="">{{ $i}}:00 am</option>
+                                                    <option value="">{{ $i}}:30 am</option>                                            
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">
+                                            <select name="" id="" class="form-control">
+                                                @for ($i = 4; $i <= 9 ; $i++)
+                                                    <option value="">{{ $i}}:30 am</option>
+                                                    <option value="">{{ $i}}:00 am</option>                                            
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <select name="" id="" class="form-control">
+                                                @for ($i = 4; $i <= 9 ; $i++)
+                                                    <option value="">{{ $i}}:30 am</option>
+                                                    <option value="">{{ $i}}:00 am</option>                                            
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-                <thead class="thead-light text-center">
-                    <tr>
-                        <th scope="col"><strong>Día</strong></th>
-                        <th scope="col"><strong>Activo</strong></th>
-                        <th scope="col"><strong>Turno mañana</strong></th>
-                        <th scope="col"><strong>Turno tarde</strong></th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
-                    @foreach ($days as $day)
-                        <tr>
-                            <th>{{ $day }}</th>
-                            <td>
-                                <label class="custom-toggle">
-                                    <input type="checkbox">
-                                    <span class="custom-toggle-slider rounded-circle"></span>
-                                </label>
-                            </td>
-                            <td>
-                                <div class="row">
-                                    <div class="col">
-                                        <select name="" id="" class="form-control">
-                                            @for ($i = 5; $i <= 11 ; $i++)
-                                                <option value="">{{ $i}}:00 am</option>
-                                                <option value="">{{ $i}}:30 am</option>                                            
-                                            @endfor
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <select name="" id="" class="form-control">
-                                            @for ($i = 5; $i <= 11 ; $i++)
-                                                <option value="">{{ $i}}:00 am</option>
-                                                <option value="">{{ $i}}:30 am</option>                                            
-                                            @endfor
-                                        </select>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="row">
-                                    <div class="col">
-                                        <select name="" id="" class="form-control">
-                                            @for ($i = 4; $i <= 9 ; $i++)
-                                                <option value="">{{ $i}}:30 am</option>
-                                                <option value="">{{ $i}}:00 am</option>                                            
-                                            @endfor
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <select name="" id="" class="form-control">
-                                            @for ($i = 4; $i <= 9 ; $i++)
-                                                <option value="">{{ $i}}:30 am</option>
-                                                <option value="">{{ $i}}:00 am</option>                                            
-                                            @endfor
-                                        </select>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+    </form>
 @endsection

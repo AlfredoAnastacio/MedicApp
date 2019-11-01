@@ -13,4 +13,8 @@ class ScheduleController extends Controller
         ];
         return view('schedule', compact('days'));
     }
+
+    public function store(Request $request){
+        dd($request->all());
+    }
 }
