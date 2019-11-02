@@ -19,13 +19,13 @@ class CreateWorkDaysTable extends Migration
             $table->unsignedSmallInteger('day');
             $table->boolean('active');
 
-            $table->time('moorning_start');
-            $table->time('moorning_end');
+            $table->time('morning_start');
+            $table->time('morning_end');
 
             $table->time('afternoon_start');
             $table->time('afternoon_end');
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
