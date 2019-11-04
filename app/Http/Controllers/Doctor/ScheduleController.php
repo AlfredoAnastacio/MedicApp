@@ -10,11 +10,13 @@ use carbon\Carbon;
 
 class ScheduleController extends Controller
 {
+
+    private $days = [
+        'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
+    ];
+
     public function edit(){
-        $days = [
-            'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
-        ];
-        // dd();
+
         $workDays = workDay::where('user_id', auth::user()->id)->get();
 
         $workDays->map(function($workDay){
@@ -25,6 +27,8 @@ class ScheduleController extends Controller
             
             return $workDay;
         });
+
+        $days = $this->days;
         return view('schedule', compact('workDays', 'days'));
     }
 
@@ -36,8 +40,16 @@ class ScheduleController extends Controller
         $afternoon_start = $request->afternoon_start;
         $afternoon_end = $request->afternoon_end;
 
+        $errors = [];
+
         for ($i=0; $i < 7; $i++) {
-            // dd($morning_start[$i]);
+            
+            if ($morning_start[$i] > $morning_end[$i]) {
+                $errors []= 'Las horas del turno mañana son incosistentes para el día ' . $this->days[$i] . '.';
+            }
+            if ($afternoon_start[$i] > $afternoon_end[$i]) {
+                $errors []= 'Las horas del turno tarde son incosistentes para el día ' . $this->days[$i] . '.';
+            }
             workDay::updateOrCreate(
                 [
                     'day' => $i,
@@ -52,6 +64,12 @@ class ScheduleController extends Controller
                 ]
             );
         }
-        return back();
+
+        if (count($errors) > 0) {
+            return back()->with(compact('errors'));
+        } else {
+            $notification = "Los cambios se han guardado correctamente.";
+            return back()->with(compact('notification'));
+        }
     }
 }
