@@ -49,6 +49,9 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->group(function(){
 
 Route::middleware(['auth', 'doctor'])->namespace('Doctor')->group(function(){
 
-    Route::get('/schedule', 'ScheduleController@edit')->name('specialty.index');
+    Route::get('/schedule', 'ScheduleController@edit')->name('schedule.index');
     Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
 });
+
+    Route::get('/appointments/create', 'AppointmentController@create')->name('appointments.create');
+    Route::post('/appointments', 'AppointmentController@store')->name('appointments.store');
