@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Specialty;
 use App\Http\Controllers\Controller;
 
 class DoctorController extends Controller
@@ -27,7 +28,8 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return view('doctors.create');
+        $specialties = Specialty::all();
+        return view('doctors.create', compact('specialties'));
     }
 
     private function performValidation(Request $request){

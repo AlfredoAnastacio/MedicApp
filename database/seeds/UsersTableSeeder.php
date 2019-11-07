@@ -21,6 +21,27 @@ class UsersTableSeeder extends Seeder
             'phone' => '2213123123',
             'role' => 'admin'
         ]);
+
+        User::create([
+            'name' => 'Daniel Ramírez',
+            'email' => 'test1@prueba.com',
+            'password' => bcrypt('123123'),
+            'dni' => '123456721',
+            'address' => 'conocido',
+            'phone' => '2213123123',
+            'role' => 'patient'
+        ]);
+
+        User::create([
+            'name' => 'Alfonso Ramírez',
+            'email' => 'test2@prueba.com',
+            'password' => bcrypt('123123'),
+            'dni' => '123456743',
+            'address' => 'conocido',
+            'phone' => '2213123123',
+            'role' => 'doctor'
+        ]);
+
         factory(User::class, 20)->create();
     }
 }
