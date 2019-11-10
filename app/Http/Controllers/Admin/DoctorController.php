@@ -72,6 +72,7 @@ class DoctorController extends Controller
         $doctor->role = 'doctor';
         $doctor->save();
 
+        $doctor->specialties()->attach($request->specialties);
         $notification = 'Doctor registrado correctamente';
 
         return redirect('/doctors')->with(compact('notification'));
@@ -97,8 +98,10 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doctor = User::doctors()->findOrFail($id);
+        $specialties = Specialty::all();
+        $specialty_ids = $doctor->specialties()->pluck('specialties.id');
 
-        return view('doctors.edit')->with(compact('doctor'));
+        return view('doctors.edit')->with(compact('doctor', 'specialties', 'specialty_ids'));
     }
 
     /**
@@ -125,6 +128,8 @@ class DoctorController extends Controller
         $doctor->phone = $request->phone;
 
         $doctor->save();
+
+        $doctor->specialties()->sync($request->specialties);
 
         $notification = 'Los datos del doctor se actualizaron correctamente';
 

@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label for="dni">DNI: </label>
-                    <input type="text" name="dni" class="form-control" placeholder="Ingresa el DNI del médico" value=" {{old('dni')}} ">
+                    <input type="text" name="dni" class="form-control" placeholder="Ingresa el DNI del médico" value=" {{old('dni')}} " maxlength="8" minlength="8">
                 </div>
                 <div class="form-group">
                     <label for="address">Dirección: </label>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group">
                     <label for="specialties">Especialidades</label>
-                    <select name="specialties" id="specialties" class="form-control selectpicker" data-style="btn-primary" multiple title="Seleccione una o varias">
+                    <select name="specialties[]" id="specialties" class="form-control selectpicker" data-style="btn-primary" multiple title="Seleccione una o varias">
                         @foreach ($specialties as $specialty)
                             <option value="{{ $specialty->id}}">{{ $specialty->name }}</option>
                         @endforeach

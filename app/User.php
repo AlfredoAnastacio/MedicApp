@@ -29,7 +29,7 @@ class User extends Authenticatable
     ];
 
     public function specialties(){
-        return $this->belongsToMany(Specialty::class);
+        return $this->belongsToMany(Specialty::class)->withTimestamps();
     }
 
     /**
