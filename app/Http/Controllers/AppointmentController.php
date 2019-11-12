@@ -10,7 +10,7 @@ class AppointmentController extends Controller
     public function create (){
 
         $specialties = Specialty::all();
-        // dd($specialties);
+        
         return view('appointment.create', compact('specialties'));
     }
 }
