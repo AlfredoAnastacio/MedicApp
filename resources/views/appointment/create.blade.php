@@ -42,7 +42,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                         </div>
-                        <input class="form-control datepicker" placeholder="Seleccione una fecha" type="text" value="06/20/2019">
+                        <input class="form-control datepicker" placeholder="Seleccione una fecha" type="text" value="{{ date('Y-m-d') }}"
+                            data-date-format="yyyy-mm-dd" data-date-start-date="{{ date('Y-m-d') }}" data-date-end-date="0d">
                     </div>
                 </div>
                 <div class="form-group">
