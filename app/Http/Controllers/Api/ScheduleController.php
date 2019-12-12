@@ -31,6 +31,7 @@ class ScheduleController extends Controller
                         'morning_start', 'morning_end',
                         'afternoon_start', 'afternoon_end'
                     ]);
+
         if (!$workDay) {
             return [];
         }
@@ -42,7 +43,6 @@ class ScheduleController extends Controller
         $data['afternoon'] = $afternoonIntervals;
 
         return $data;
-
     }
 
     private function getIntervals($start, $end) {

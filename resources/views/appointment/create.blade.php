@@ -19,40 +19,61 @@
                 </ul>
             </div>
         @endif
-            <form action=" {{route('patients.store') }}" method="post">
+            <form action=" {{route('appointments.store') }}" method="post">
             @csrf
                 <div class="form-group">
-                    <label for="name">Especialidad:</label>
-                    <select name="specialty_id" id="specialty" class="form-control">
-                        <option disabled selected>Selecciona una opción</option>
-                        @foreach ($specialties as $specialty)
-                            <option value="{{ $specialty->id}}">{{ $specialty->name }}</option>
-                        @endforeach
-                    </select>
+                    <label for="description">Descripción:</label>
+                    <input name="description" id="descrption" type="text" class="form-control" placeholder="Describe brevemente la consulta">
                 </div>
-                <div class="form-group">
-                    <label for="email">Médico: </label>
-                    <select name="doctor_id" id="doctor" class="form-control">
-                        <option disabled selected>Selecciona una opción</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="fecha">Fecha: </label>
-                    <div class="input-group input-group-alternative">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="name">Especialidad:</label>
+                        <select name="specialty_id" id="specialty" class="form-control">
+                            <option disabled selected>Selecciona una opción</option>
+                            @foreach ($specialties as $specialty)
+                                <option value="{{ $specialty->id}}">{{ $specialty->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="email">Médico: </label>
+                        <select name="doctor_id" id="doctor" class="form-control">
+                            <option disabled selected>Selecciona una opción</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fecha">Fecha: </label>
+                        <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                            </div>
+                            <input class="form-control datepicker" id="fechaCita" placeholder="Seleccione una fecha" type="text" value="{{ date('Y-m-d') }}"
+                                data-date-format="yyyy-mm-dd" data-date-start-date="{{ date('Y-m-d') }}" data-date-end-date="+30d">
                         </div>
-                        <input class="form-control datepicker" id="fechaCita" placeholder="Seleccione una fecha" type="text" value="{{ date('Y-m-d') }}"
-                            data-date-format="yyyy-mm-dd" data-date-start-date="{{ date('Y-m-d') }}" data-date-end-date="+30d">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="address">Hora de atención: </label>
-                    <div id="hours"></div>
+                    <div id="hours">
+                        <div class="alert alert-info" role="alert">
+                            Selecciona un médico y una fecha para ver los horarios disponibles.
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Teléfono / móvil: </label>
-                    <input type="number" name="phone" class="form-control" placeholder="Ingresa un número de teléfono" value="{{old('phone')}}">
+                    <label for="type">Tipo de consulta: </label>
+                    <div class="custom-control custom-radio mb-3">
+                        <input name="type" class="custom-control-input" id="type1" checked type="radio">
+                        <label class="custom-control-label" for="type1">Consulta</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                        <input name="type" class="custom-control-input" id="type2" type="radio">
+                        <label class="custom-control-label" for="type2">Exámen</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                        <input name="type" class="custom-control-input" id="type3" type="radio">
+                        <label class="custom-control-label" for="type3">Operación</label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="phone">Contraseña: </label>

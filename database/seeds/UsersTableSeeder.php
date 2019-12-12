@@ -42,6 +42,7 @@ class UsersTableSeeder extends Seeder
             'role' => 'doctor'
         ]);
 
-        factory(User::class, 20)->create();
+        factory(User::class, 20)->states('patient')->create();
+
     }
 }

@@ -34,6 +34,7 @@ function loadHours() {
 }
 
 function displayHours(data) {
+    console.log(data);
     if(!data.morning && !data.afternoon) {
         $hours.html(noHoursAlert);
         return;
