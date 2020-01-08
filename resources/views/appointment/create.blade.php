@@ -23,12 +23,12 @@
             @csrf
                 <div class="form-group">
                     <label for="description">Descripción:</label>
-                    <input name="description" id="descrption" type="text" class="form-control" placeholder="Describe brevemente la consulta">
+                    <input name="description" id="descrption" type="text" class="form-control" placeholder="Describe brevemente la consulta" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="name">Especialidad:</label>
-                        <select name="specialty_id" id="specialty" class="form-control">
+                        <select name="specialty_id" id="specialty" class="form-control" required>
                             <option disabled selected>Selecciona una opción</option>
                             @foreach ($specialties as $specialty)
                                 <option value="{{ $specialty->id}}">{{ $specialty->name }}</option>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="email">Médico: </label>
-                        <select name="doctor_id" id="doctor" class="form-control">
+                        <select name="doctor_id" id="doctor" class="form-control required">
                             <option disabled selected>Selecciona una opción</option>
                         </select>
                     </div>
@@ -74,10 +74,6 @@
                         <input name="type" class="custom-control-input" id="type3" type="radio">
                         <label class="custom-control-label" for="type3">Operación</label>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Contraseña: </label>
-                    <input type="text" name="password" class="form-control" value=" {{ str_random(6) }} ">
                 </div>
                 <div class="text-center">
                     <a href="{{ route('patients.index')}}" class="btn btn-secondary">Cancelar</a>

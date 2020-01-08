@@ -28,5 +28,7 @@ class SpecialtiesTableSeeder extends Seeder
                 factory(User::class)->states('doctor')->make()
             );
         }
+
+        User::find(3)->specialties()->save($specialty);
     }
 }
