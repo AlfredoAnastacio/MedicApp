@@ -5,14 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Specialty;
 use App\Appointment;
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
     public function create (){
 
         $specialties = Specialty::all();
-        
-        return view('appointment.create', compact('specialties'));
+
+        $specialtyId =  old('specialty_id');
+
+        if ($specialtyId) {
+            $specialty = Specialty::find($specialtyId);
+            $doctors = $specialty->users;
+        } else {
+            $doctors = collect();
+        }
+        return view('appointment.create', compact('specialties', 'doctors'));
     }
 
     public function store(Request $request){
@@ -41,6 +50,8 @@ class AppointmentController extends Controller
         ]);
 
         $data['patient_id'] = auth()->id();
+        $carbonTime = Carbon::createFromFormat('g:i A', $data['scheduled_time']);
+        $data['scheduled_time'] = $carbonTime->format('H:i:s');
 
         Appointment::create($data);
 
